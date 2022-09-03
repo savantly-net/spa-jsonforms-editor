@@ -23,84 +23,84 @@
   THE SOFTWARE.
 */
 export const taskSchema = {
-  $schema: 'http://json-schema.org/draft-07/schema',
-  type: 'object',
+  $schema: "http://json-schema.org/draft-07/schema",
+  type: "object",
   properties: {
     _type: {
-      type: 'string',
-      default: 'userGroup'
+      type: "string",
+      default: "userGroup",
     },
     label: {
-      type: 'string'
+      type: "string",
     },
     users: {
-      type: 'array',
+      type: "array",
       items: {
-        $ref: '#/definitions/user'
-      }
-    }
+        $ref: "#/definitions/user",
+      },
+    },
   },
   additionalProperties: false,
   definitions: {
     task: {
-      type: 'object',
+      type: "object",
       properties: {
         _type: {
-          type: 'string',
-          default: 'task'
+          type: "string",
+          default: "task",
         },
         name: {
-          type: 'string'
+          type: "string",
         },
         dueDate: {
-          type: 'string',
-          format: 'date'
+          type: "string",
+          format: "date",
         },
         done: {
-          type: 'boolean'
+          type: "boolean",
         },
         priority: {
-          type: 'string',
-          enum: ['High', 'Medium', 'Low'],
-          default: 'Medium'
+          type: "string",
+          enum: ["High", "Medium", "Low"],
+          default: "Medium",
         },
         subTasks: {
-          type: 'array',
+          type: "array",
           items: {
-            $ref: '#/definitions/task'
-          }
-        }
+            $ref: "#/definitions/task",
+          },
+        },
       },
-      required: ['name', 'priority'],
-      additionalProperties: false
+      required: ["name", "priority"],
+      additionalProperties: false,
     },
     user: {
-      type: 'object',
+      type: "object",
       properties: {
         _type: {
-          type: 'string',
-          default: 'user'
+          type: "string",
+          default: "user",
         },
         name: {
-          type: 'string'
+          type: "string",
         },
         birthday: {
-          type: 'string',
-          format: 'date'
+          type: "string",
+          format: "date",
         },
         nationality: {
-          type: 'string',
-          enum: ['DE', 'IT', 'JP', 'US', 'RU', 'Other']
+          type: "string",
+          enum: ["DE", "IT", "JP", "US", "RU", "Other"],
         },
         tasks: {
-          type: 'array',
+          type: "array",
           items: {
-            $ref: '#/definitions/task'
-          }
-        }
+            $ref: "#/definitions/task",
+          },
+        },
       },
-      required: ['name'],
-      additionalProperties: false
-    }
-  }
+      required: ["name"],
+      additionalProperties: false,
+    },
+  },
 };

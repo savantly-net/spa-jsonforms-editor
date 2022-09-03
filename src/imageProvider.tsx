@@ -22,29 +22,26 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
 */
-import * as React from 'react';
-import { Icon } from '@material-ui/core';
-import { Work } from '@material-ui/icons';
-import { JsonSchema } from '@jsonforms/core';
+import { JsonSchema } from "@jsonforms/core";
+import { Icon } from "@material-ui/core";
+import { Work } from "@material-ui/icons";
+import * as React from "react";
 
-const isUserGroup = (schema: JsonSchema) => schema.properties.users !== undefined;
+const isUserGroup = (schema: JsonSchema) =>
+  schema.properties.users !== undefined;
 const isTask = (schema: JsonSchema) => schema.properties.done !== undefined;
 const isUser = (schema: JsonSchema) => schema.properties.birthday !== undefined;
 
-export const imageProvider = (schema: JsonSchema): React.ReactElement<any> | string => {
+export const imageProvider = (
+  schema: JsonSchema
+): React.ReactElement<any> | string => {
+  if (isTask(schema)) {
+    return "icon task";
+  } else if (isUserGroup(schema)) {
+    return <Icon className={"icon userGroup"} fontSize={"inherit"} />;
+  } else if (isUser(schema)) {
+    return <Work />;
+  }
 
-    if (isTask(schema)) {
-         return 'icon task';
-    } else if (isUserGroup(schema)) {
-        return (
-            <Icon
-                className={'icon userGroup'}
-                fontSize={'inherit'}
-            />
-        );
-    } else if (isUser(schema)) {
-        return <Work/>;
-    }
-
-    return (<Icon />);
+  return <Icon />;
 };
